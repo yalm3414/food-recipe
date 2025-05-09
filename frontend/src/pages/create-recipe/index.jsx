@@ -59,7 +59,7 @@ export default function CreateRecipe() {
     <div>
       <div className="flex flex-col mx-auto items-center content- max-w-5xl w-full p-5 gap-10 ">
         <h1 className="font-extrabold lg:text-4xl text-xl text-black">
-          Create Recipe
+          {id === "create" ? "Create Recipe" : "Update Recipe"}
         </h1>
         <form
           onSubmit={id === "create" ? createCustomRecipe : updateCustomRecipe}
@@ -117,7 +117,7 @@ export default function CreateRecipe() {
             className="text-sm p-3 mt-5 px-8 w-43 mx-auto rounded-lg uppercase font-medium tracking-wider inline-block shadow-md bg-black text-white"
             type="submit"
           >
-            Create Recipe
+            {id === "create" ? "Create Recipe" : "Update Recipe"}
           </button>
         </form>
       </div>

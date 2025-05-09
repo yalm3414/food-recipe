@@ -49,6 +49,12 @@ export default function Navbar() {
           </NavLink>
         </li>
       </ul>
+      <NavLink
+        to={"/login"}
+        className="text-sm p-3 mt-5  mx-auto rounded-lg uppercase font-medium tracking-wider inline-block shadow-md bg-black text-white"
+      >
+        Sign In
+      </NavLink>
     </nav>
   );
 }
