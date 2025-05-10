@@ -4,12 +4,19 @@ import api from "../api";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 
+// To check if user is authrized to acces certain links
+// I put this for the Custom and Favorite pages (Check app.jsx)
+
 function ProtectedRoute({ children }) {
   const [isAuthorized, setIsAuthrized] = useState(null);
 
   useEffect(() => {
     auth().catch(() => setIsAuthrized(false));
   });
+
+  // Checks if there is a valid refresh token
+  // If there is it will get an access token and save to local storage
+  // Other wise authrization failed which will bring them to login page
 
   const refreshToken = async () => {
     const refreshToken = localStorage.getItem(REFRESH_TOKEN);

@@ -3,16 +3,16 @@ import api from "../../api";
 import { Link } from "react-router-dom";
 import RecipeItem from "../../components/recipe-item";
 
+// This is what loads for the "Custom" page
+// Under protectedroute, so will only be displayed if logged in otherwise brings user to login page
 export default function CustomRecipes() {
   const [customRecipes, setCustomRecipes] = useState([]);
-  const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
-  const [title, setTitle] = useState("");
 
   useEffect(() => {
     getCustomRecipes();
   }, []);
 
+  // Gets all the custom recipes for the logged in user
   const getCustomRecipes = () => {
     api
       .get("/api/custom-recipes/")
@@ -20,29 +20,6 @@ export default function CustomRecipes() {
       .then((data) => {
         setCustomRecipes(data);
         console.log(data);
-      })
-      .catch((err) => alert(err));
-  };
-
-  const deleteCustomRecipe = (id) => {
-    api
-      .delete(`/api/custom-recipes/delete/${id}/`)
-      .then((res) => {
-        if (res.status === 204) alert("Recipe deleted!");
-        else alert("Failed to delete note");
-        getCustomRecipes();
-      })
-      .catch((error) => alert(error));
-  };
-
-  const createCustomRecipe = (e) => {
-    e.preventDefault();
-    api
-      .post("/api/custom-recipes", { ingredients, instructions, title })
-      .then((res) => {
-        if (res.status === 201) alert("Note Created!");
-        else alert("Failed to make note.");
-        getCustomRecipes();
       })
       .catch((err) => alert(err));
   };
@@ -61,9 +38,12 @@ export default function CustomRecipes() {
         </Link>
       </div>
       <div className="py-8 container mx-auto flex flex-wrap justify-center gap-10">
-        {customRecipes.map((item) => (
-          <RecipeItem item={item} type="custom" />
-        ))}
+        {
+          // (Change) Loads all the custom recipes in a list of "recipe-item" components
+          customRecipes.map((item) => (
+            <RecipeItem item={item} type="custom" />
+          ))
+        }
       </div>
     </div>
   );

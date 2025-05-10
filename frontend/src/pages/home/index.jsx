@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context";
 import RecipeItem from "../../components/recipe-item";
 
+// (change) Displays first 20 search results from Edamam api
 export default function Home() {
   const { recipes, loading } = useContext(GlobalContext);
   const { searchResult, setSearchResult } = useContext(GlobalContext);

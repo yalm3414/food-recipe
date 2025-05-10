@@ -1,17 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+# This is the model for the users Cusom Recipes
+# (change) I have to add images 
 class CustomRecipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="custom_recipes")
     title = models.CharField(max_length=255)
     ingredients = models.TextField()
     instructions = models.TextField()
-    # add image upload
+    # (change) add image upload
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.title} by {self.user.username}"
 
+# This is the Model for the users Favorites from Edmaam Api
+# (change) I put url, uri, image all to charFeild for test might switch back
 class FavoriteRecipe(models.Model):
     # All of this is from Edamam API
 

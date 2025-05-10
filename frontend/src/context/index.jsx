@@ -9,11 +9,11 @@ export default function GlobalState({ children }) {
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [recipeDetailsData, setRecipeDetailsData] = useState(null);
-  const [favoritesList, setFavoritesList] = useState([]);
   const [searchResult, setSearchResult] = useState("");
 
   const navigate = useNavigate();
 
+  // Searches the Edamam Database when some one submits whats in the search bar (navbar file)
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -57,28 +57,6 @@ export default function GlobalState({ children }) {
     }
   }
 
-  //delete later using different method in details page
-  function handleAddToFavorite(getCurrentItem) {
-    const getRecipeId = (uri) => uri.split("#").pop();
-
-    console.log(getCurrentItem);
-    let cpyFavoritesList = [...favoritesList];
-    const index = cpyFavoritesList.findIndex(
-      (item) =>
-        getRecipeId(item?.recipe?.uri) ===
-        getRecipeId(getCurrentItem?.recipe?.uri)
-    );
-
-    if (index === -1) {
-      cpyFavoritesList.push(getCurrentItem);
-    } else {
-      cpyFavoritesList.splice(index, 1);
-    }
-
-    setFavoritesList(cpyFavoritesList);
-  }
-
-  console.log(favoritesList, "favoritesList");
   return (
     <GlobalContext.Provider
       value={{
@@ -89,8 +67,6 @@ export default function GlobalState({ children }) {
         recipes,
         recipeDetailsData,
         setRecipeDetailsData,
-        handleAddToFavorite,
-        favoritesList,
         searchResult,
         setSearchResult,
       }}

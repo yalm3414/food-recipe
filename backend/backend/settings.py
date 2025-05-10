@@ -30,7 +30,11 @@ SECRET_KEY = 'django-insecure-oa-(&5jxz(=u@j%uwtf8q_3rdva!6udg$#gd2(1oz^5^q&1m5f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# (Change) I have it set to all so it can be easily deployed
+# must change for security
 ALLOWED_HOSTS = ["*"]
+
+# This is for Authentication using JWT tokens
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -143,7 +147,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Just so i dont hit any road blocks
-#Change later for more security
+# (change) Just so i dont hit any road blocks when deploying 
+# Change later for more security
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True

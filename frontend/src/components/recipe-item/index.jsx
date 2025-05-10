@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
+// This is used for all the recipe cards/items displayed in search, custom, and favorites
+
 export default function RecipeItem({ item, type }) {
+  // Gets uri id from edamam uri link
+  // Need this when searching for specific recipe in Edamam api
   const getRecipeId = (uri) => {
     if (!uri) return ""; // Avoid calling split on undefined
     return uri.split("#").pop();
@@ -13,7 +17,7 @@ export default function RecipeItem({ item, type }) {
           src={
             type === "favorites"
               ? item?.image
-              : //there is no image upload yet
+              : // there is no image upload yet (Placeholder image)
               type === "custom"
               ? "/public/food_place_holder.png"
               : item?.recipe?.image
@@ -37,6 +41,9 @@ export default function RecipeItem({ item, type }) {
             ? item?.title
             : item?.recipe?.label}
         </h3>
+        {/** Navigates to details page with there database id or uri
+         *   So it can search the database or Edamam API for details for specific recipe
+         */}
         <Link
           to={`/recipe-item/${
             type === "favorites"

@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../context";
+import { useEffect, useState } from "react";
 import RecipeItem from "../../components/recipe-item";
 import api from "../../api";
 
+// Displays all the favorited recipes
 export default function Favorites() {
   const [favorites, setFavorites] = useState(null);
-  const { searchParam, setSearchParam, handleSubmit } =
-    useContext(GlobalContext);
 
   useEffect(() => {
     getFavoriteRecipes();
   }, []);
+
+  // Gets all the recipes in the users favorites database
   const getFavoriteRecipes = () => {
     api
       .get("/api/favorite-recipes/")
@@ -31,7 +31,7 @@ export default function Favorites() {
           </h1>
 
           <div className="py-8 container mx-auto flex flex-wrap justify-center gap-10">
-            {favorites.map((item) => (
+            {favorites.toReversed().map((item) => (
               <RecipeItem item={item} type="favorites" />
             ))}
           </div>

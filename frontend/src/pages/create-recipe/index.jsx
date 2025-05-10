@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "../../api";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+// Form for creating or updateing custom recipes
 
 export default function CreateRecipe() {
   const [ingredients, setIngredients] = useState("");
@@ -38,6 +40,9 @@ export default function CreateRecipe() {
       .catch((err) => alert(err));
   };
 
+  // For updating recipe form
+  // Fills the form with the current recipe data
+  // So user can update the recipe
   useEffect(() => {
     if (id !== "create") {
       const getCustomRecipes = () => {
